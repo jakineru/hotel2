@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>documentación /hotel2/</title>
+    <style>
+        :root {
+            --bg: #fffcfc;
+            --card-bg: #fdf9f9;
+            --text: #390000;
+            --text-muted: #060606;
+            --border: #929292;
+            --accent: #ff5858;
+            --code-bg: #989898;
+            --inline-code-bg: rgba(202, 202, 203, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .markdown-body {
+            width: 100%;
+            max-width: 850px;
+            background-color: var(--bg);
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--border);
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        p, ul, ol, table, pre, blockquote {
+            margin-bottom: 16px;
+        }
+
+        blockquote {
+            padding: 0 1em;
+            color: var(--text-muted);
+            border-left: 0.25em solid var(--border);
+        }
+
+        ul, ol {
+            padding-left: 2em;
+        }
+
+        li {
+            margin-top: 0.25em;
+        }
+
+        code {
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            white-space: break-spaces;
+            background-color: var(--inline-code-bg);
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+        }
+
+        pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            color: var(--text);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        pre code {
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid var(--border);
+        }
+
+        table th {
+            font-weight: 600;
+            background-color: var(--card-bg);
+        }
+
+        table tr:nth-child(2n) {
+            background-color: rgba(110, 118, 129, 0.04);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 75%;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+        }
+    </style>
+</head>
+<body>
+
+<main class="markdown-body">
+
+    <h1>documentacion del proyecto /hotel2/</h1>
+
+    <blockquote>
+        <p><strong>sistema de reservas y administracion de usuarios/habitaciones para un hotel</strong><br>
+        <em>proyecto final programacion 2 - utu ctt (gerónimo ledesma)</em></p>
+    </blockquote>
+
+    <h2>1. descripción general del sistema</h2>
+    <p>el sistema de gestión para hotelería <strong>hotel2</strong> funcionaría como una aplicación web desarrollada en <strong>php</strong> y <strong>mysql</strong> diseñada para administrar de forma centralizada las reservas, el catálogo y disponibilidad de habitaciones, el registro de clientes y la gestión (simulada en este caso) de pagos.</p>
+
+    <p>ofrece dos modos principales de uso:</p>
+    <ul>
+        <li><strong>portal público:</strong> permite a los clientes explorar habitaciones, verificar el estado de ellas y realizar reservas en línea.</li>
+        <li><strong>panel administrativo (<code>/views/admin/</code>):</strong> interfaz protegida por rol para la gestión CRUD (crear, editar, etc...) completa de usuarios, habitaciones y reservas.</li>
+    </ul>
+
+    <h2>2. módulos implementados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>módulo</th>
+                <th>descripción y funcionalidades</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>LOGIN Y USUARIOS 🔒</code></td>
+                <td>registro, inicio de sesión, cierre de sesión y control de acceso (a los distintos /views/ basado en roles (<code>cliente</code> y <code>admin</code>).</td>
+            </tr>
+            <tr>
+                <td><code>HABITACIONES 🏠</code></td>
+                <td>catálogo interactivo con filtro de estado (disponible, mantenimiento, inactiva), fotos, precios y capacidad.</td>
+            </tr>
+            <tr>
+                <td><code>RESERVAS 📅</code></td>
+                <td>sistema de reserva de habitaciones para clientes y panel de administración para modificar las reservas ya existentes.</td>
+            </tr>
+            <tr>
+                <td><code>PAGOS 💳</code></td>
+                <td>simulación de procesamiento de pagos con tarjeta de crédito asociadas a las reservas.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. tablas utilizadas desde php</h2>
+    <p>el sistema interactúa mediante <strong>PDO</strong> y <strong>Prepared Statements</strong> con <strong>4 tablas relacionales</strong> en mysql:</p>
+    <ul>
+        <li><code>usuarios</code> -> almacena los datos personales, como cédula (<code>ci</code>), nombres, apellidos, email, contraseña, rol (<code>cliente</code>/<code>admin</code>), estado y fecha de nacimiento.</li>
+        <li><code>habitaciones</code> -> almacena número de habitación, categoría (<code>simple</code>, <code>doble</code>, <code>suite</code>), precio por noche, capacidad, estado e imagen (puede ser <code>/directorio/</code> o <code>https://una.url.com</code>).</li>
+        <li><code>reservas</code> -> vincula un usuario (<code>ci_usuario</code>) con una habitación (<code>numero_hab</code>), incluyendo fechas de ingreso/salida y el estado del pago.</li>
+        <li><code>pagos</code> -> registra las transacciones confirmadas (<code>id_reserva</code>, número de tarjeta procesada y monto pagado).</li>
+    </ul>
+
+    <h2>4. arquitectura del sistema</h2>
+    <p>se seleccionó una <strong>arquitectura modular</strong> para garantizar la separación de funciones y el mantenimiento del código:</p>
+
+<pre><code>hotel2/
+├── 📁 config/        ---> conexión a la bd y constantes globales (Conexion.php)
+├── 📁 models/        ---> lógica de datos y patrones (Usuario.php, UsuarioFactory.php, etc.)
+├── 📁 views/         ---> interfaz visual para el usuario y vistas administrativas
+│   └── 📁 admin/     ---> panel de gestión restringido para administradores
+├── 📁 includes/      ---> plantillas reutilizables (header, footer, funciones)
+├── 📁 img/           ---> recursos multimedia del proyecto
+├── 🛢️ estructura.sql ---> script DDL para creación de la base de datos
+├── 🛢️ datos.sql      ---> script DML con datos iniciales de prueba
+├── 🛢️ usuarios.sql   ---> (NO USADO EN LA APP) script para crear perfiles de acceso mysql
+├── 🛢️ vistas.sql     ---> (NO USADO EN LA APP) scripts para crear y probar las 3 vistas (tablas virtuales)
+├── 🛢️ consultas.sql  ---> (NO USADO EN LA APP) ejemplos de ejecuciones SQL
+├── 📄 modelos.txt    ---> (NO USADO EN LA APP) enlaces del proyecto en modelos MR y MER
+└── 📄 documentacion.html</code></pre>
+
+    <h2>5. clases principales y patrones de diseño</h2>
+
+    <h3>CLASES PRINCIPALES (/models/): </h3>
+    <ul>
+        <li><code>Conexion</code> (<code>config/Conexion.php</code>): administra el objeto PDO (conexion y gestion php-db) para la base de datos.</li>
+        <li><code>UsuarioFactory</code> (<code>models/UsuarioFactory.php</code>): fábrica para la construcción de usuarios según su rol.</li>
+        <li><code>Usuario</code>, <code>Habitacion</code>, <code>Reserva</code>: clases modelo encargadas del acceso a los   datos.</li>
+    </ul>
+
+    <h3>PATRONES DE DISEÑO:</h3>
+
+    <h4>1. Singleton 🔄 (<code>config/Conexion.php</code>)</h4>
+    <ul>
+        <li><strong>problema que resuelve:</strong> evita la apertura repetitiva e innecesaria de múltiples conexiones a la base de datos mysql, optimizando el uso de recursos de nuestro servidor.</li>
+        <li><strong>implementación:</strong> posee un constructor privado y un método estático <code>obtenerInstancia()</code> que retorna una única instancia reutilizable de la clase PDO durante el ciclo de vida de cada solicitud HTTP.</li>
+    </ul>
+
+    <h4>2. Factory 🏭 (<code>models/UsuarioFactory.php</code>)</h4>
+    <ul>
+        <li><strong>problema que resuelve:</strong> centraliza la creación de estructuras de usuario (para los administradores) evitando duplicar lógica al registrar o editar clientes y demás administradores.</li>
+        <li><strong>implementación:</strong> el método <code>crearUsuario($tipo, $datos)</code> procesa los parámetros recibidos y configura los atributos, permisos y valores por defecto específicos según el rol (<code>admin</code> o <code>cliente</code>) antes de interactuar con la base de datos.</li>
+    </ul>
+
+    <h2>6. instrucciones de ejecución</h2>
+
+    <h3>1️⃣ preparación de la base de datos</h3>
+    <ol>
+        <li>ejecutar <strong>phpMyAdmin</strong> o cliente mysql habitual.</li>
+        <li>ejecutar en orden los scripts SQL incluidos en el proyecto:
+            <ul>
+                <li><code>estructura.sql</code> (crea la base <code>hotel_db</code> y sus 4 tablas).</li>
+                <li><code>datos.sql</code> (inserta los datos iniciales de prueba).</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>2️⃣ despliegue local</h3>
+    <ol>
+        <li>copiar la carpeta del proyecto dentro del directorio raíz de su servidor local (ejemplo: <code>xampp/htdocs/hotel2</code>).</li>
+        <li>verificar la configuración de tu base de datos en <code>config/Conexion.php</code> (configurado por defecto para <code>localhost</code>, con el usuario <code>root</code> y sin contraseña).</li>
+        <li>asegurarse de cambiar <code>$base_url = '/hotel2/';</code> por tu URL BASE en <code>includes/init.php</code>.</li>
+    </ol>
+
+    <h3>3️⃣ credenciales de acceso</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>rol</th>
+                <th>CI/documento</th>
+                <th>contraseña</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="badge">👑 ADMINISTRADOR</span></td>
+                <td><code>admin</code></td>
+                <td><code>admin</code></td>
+            </tr>
+            <tr>
+                <td><span class="badge">👤 CLIENTE DEMO</span></td>
+                <td><code>demo</code></td>
+                <td><code>123</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+</main>
+
+</body>
+</html>
