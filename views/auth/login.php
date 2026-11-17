@@ -13,16 +13,17 @@ if (es_post()) {
 
         $usuario = Usuario::obtenerPorCi($ci);
 
-        if (!$usuario || $usuario['contra'] !== $contra) {
+        if (!$usuario || $usuario->getContra() !== $contra) {
             throw new Exception("los datos ingresados son incorrectos.");
         }
 
-        if ($usuario['estado'] !== 'activo') {
+        if ($usuario->getEstado() !== 'activo') {
             throw new Exception("usuario inactivo.");
         }
 
         $_SESSION['estado'] = 'logeado';
         $_SESSION['usuario_actual'] = $usuario;
+        $_SESSION['rol'] = $usuario->getRol();
 
         header("Location: ../../index.php");
         exit;
