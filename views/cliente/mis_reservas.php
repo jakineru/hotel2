@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../models/Reserva.php';
 
 requerir_login();
 
-$ci_usuario = $_SESSION['usuario_actual']['ci'];
+$ci_usuario = $_SESSION['usuario_actual']->getCi();
 $reservas = Reserva::obtenerPorUsuario($ci_usuario);
 
 require_once __DIR__ . '/../../includes/header.php';

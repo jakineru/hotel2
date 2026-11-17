@@ -4,8 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $es_logeado = isset($_SESSION['estado']) && $_SESSION['estado'] === 'logeado';
-$es_admin = $es_logeado && isset($_SESSION['usuario_actual']['rol']) && strtolower($_SESSION['usuario_actual']['rol']) === 'admin';
-?>
+$es_admin = $es_logeado && strtolower($_SESSION['usuario_actual']->getRol()) === 'admin';?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -35,7 +35,7 @@ $es_admin = $es_logeado && isset($_SESSION['usuario_actual']['rol']) && strtolow
             <div class="nav-section nav-right">
                 <?php if ($es_logeado): ?>
                     <div class="user-info">
-                        <span class="user-greeting">hola, <strong><?php echo htmlspecialchars($_SESSION['usuario_actual']['nombres']); ?></strong></span>
+                        <span class="user-greeting">hola, <strong><?php echo htmlspecialchars($_SESSION['usuario_actual']->getNombres()); ?></strong></span>
                         <a href="/hotel2/logout.php" class="btn-logout">salir</a>
                     </div>
                 <?php else: ?>

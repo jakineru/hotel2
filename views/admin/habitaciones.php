@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../config/Conexion.php';
 
-if (!isset($_SESSION['estado']) || $_SESSION['estado'] !== 'logeado' || (($_SESSION['usuario_actual']['rol'] ?? '') !== 'admin')) {
+if (!isset($_SESSION['estado']) || $_SESSION['estado'] !== 'logeado' || ($_SESSION['usuario_actual']->getRol() !== 'admin')) {
     header("Location: /hotel2/views/auth/login.php?msg=acceso_denegado");
     exit;
 }

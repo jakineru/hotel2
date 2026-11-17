@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../includes/init.php';
 require_once __DIR__ . '/../../config/Conexion.php';
 require_once __DIR__ . '/../../models/UsuarioFactory.php';
 
-if (!isset($_SESSION['estado']) || $_SESSION['estado'] !== 'logeado' || (($_SESSION['usuario_actual']['rol'] ?? '') !== 'admin')) {
+if (!isset($_SESSION['estado']) || $_SESSION['estado'] !== 'logeado' || ($_SESSION['usuario_actual']->getRol() !== 'admin')) {
     header("Location: /hotel2/views/auth/login.php?msg=acceso_denegado");
     exit;
 }
@@ -35,31 +35,31 @@ if (es_post()) {
         if ($es_edicion) {
             $stmt = $db->prepare("UPDATE usuarios SET nombres = ?, apellidos = ?, email = ?, contra = ?, rol = ?, estado = ?, fecha_nacimiento = ? WHERE ci = ?");
             $stmt->execute([
-                $datos_usuario['nombres'],
-                $datos_usuario['apellidos'],
-                $datos_usuario['email'],
-                $datos_usuario['contra'],
-                $datos_usuario['rol'],
-                $datos_usuario['estado'],
+                $datos_usuario->getNombres(),
+                $datos_usuario->getApellidos(),
+                $datos_usuario->getEmail(),
+                $datos_usuario->getContra(),
+                $datos_usuario->getRol(),
+                $datos_usuario->getEstado(),
                 $fecha_nacimiento,
-                $datos_usuario['ci']
+                $datos_usuario->getCi()
             ]);
         } else {
             $stmtCheck = $db->prepare("SELECT ci FROM usuarios WHERE ci = ?");
-            $stmtCheck->execute([$datos_usuario['ci']]);
+            $stmtCheck->execute([$datos_usuario->getCi()]);
             if ($stmtCheck->fetch()) {
-                throw new Exception("ya existe un usuario con la cédula {$datos_usuario['ci']}.");
+                throw new Exception("ya existe un usuario con la cédula {$datos_usuario->getCi()}.");
             }
 
             $stmt = $db->prepare("INSERT INTO usuarios (ci, nombres, apellidos, email, contra, rol, estado, fecha_nacimiento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([
-                $datos_usuario['ci'],
-                $datos_usuario['nombres'],
-                $datos_usuario['apellidos'],
-                $datos_usuario['email'],
-                $datos_usuario['contra'],
-                $datos_usuario['rol'],
-                $datos_usuario['estado'],
+                $datos_usuario->getCi(),
+                $datos_usuario->getNombres(),
+                $datos_usuario->getApellidos(),
+                $datos_usuario->getEmail(),
+                $datos_usuario->getContra(),
+                $datos_usuario->getRol(),
+                $datos_usuario->getEstado(),
                 $fecha_nacimiento
             ]);
         }

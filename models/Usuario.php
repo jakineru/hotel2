@@ -11,8 +11,8 @@ class Usuario {
 
         if (!$data) return null;
 
-        // uso del factory para convertirlo en un objeto de poo 
-        return UsuarioFactory::crearUsuario($data['tipo'], $data);
+            $rol = $data['tipo'] ?? $data['rol'] ?? 'cliente';
+        return UsuarioFactory::crearUsuario($rol, $data);
     }
 
     public static function obtenerPorEmail($email) {
@@ -23,7 +23,8 @@ class Usuario {
 
         if (!$data) return null;
 
-        return UsuarioFactory::crearUsuario($data['tipo'], $data);
+        $rol = $data['tipo'] ?? $data['rol'] ?? 'cliente';
+        return UsuarioFactory::crearUsuario($rol, $data);
     }
 
     public static function crear($ci, $nombres, $apellidos, $fecha_nacimiento, $telefono, $email, $contra) {

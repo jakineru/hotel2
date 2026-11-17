@@ -38,7 +38,7 @@ if (es_post()) {
         $cardholder = trim($_POST['cardholder']);
 
         validar_tarjeta($tarjeta);
-        validar_vencimiento_tarjeta($vencimiento);
+        validar_vencimiento_tarjeta($vencimiento); 
         validar_cvv($cvv);
         validar_cardholder($cardholder);
 

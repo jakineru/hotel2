@@ -40,7 +40,7 @@ if (es_post()) {
             throw new Exception("la cantidad de noches debe ser mayor a cero.");
         }
 
-        $ci_usuario = $_SESSION['usuario_actual']['ci'];
+        $ci_usuario = $_SESSION['usuario_actual']->getCi();
         $numero_hab = $habitacion['numero'];
 
         Reserva::crear($ci_usuario, $numero_hab, $fecha_in, $fecha_out);

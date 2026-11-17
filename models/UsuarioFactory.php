@@ -6,6 +6,7 @@ abstract class UsuarioBase {
         $this->ci = $datos['ci'];
         $this->nombres = $datos['nombres'];
         $this->apellidos = $datos['apellidos'];
+        
         $this->email = $datos['email'];
         $this->contra = $datos['contra'];
         $this->estado = $datos['estado'] ?? 'activo';
@@ -13,6 +14,7 @@ abstract class UsuarioBase {
 
     public function getCi() { return $this->ci; }
     public function getNombres() { return $this->nombres; }
+    public function getApellidos() { return $this->apellidos; }
     public function getEmail() { return $this->email; }
     public function getRol() { return $this->rol; }
     public function getContra() { return $this->contra; }
